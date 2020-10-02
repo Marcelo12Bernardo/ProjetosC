@@ -1,0 +1,28 @@
+#--------------------#
+#Sensores meio
+texto esq="sla"
+texto dir="sla2"
+texto cen="sla3"
+#--------------------#
+
+inicio
+  enquanto(1==1) farei
+  {
+#--------------------#  
+     esq=cor(2)
+     #cen=cor(3)
+     dir=cor(1)
+#--------------------# 
+    se(dir=="BRANCO" e esq=="BRANCO") entao
+    {frente (100)}
+    
+    se(dir=="BRANCO" e esq!="BRANCO") entao
+    {motoresquerda(200) motordireita(negativo(300))}
+      
+    se(dir!="BRANCO" e esq=="BRANCO") entao
+    {motoresquerda(negativo(300)) motordireita(200)}
+#--------------------#     
+  }
+
+
+fim

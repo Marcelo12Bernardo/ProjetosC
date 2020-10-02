@@ -1,0 +1,45 @@
+#Sensores meio
+texto esq="sla"
+texto dir="sla2"
+texto cen="sla3"
+#Sensores ponta 
+texto Pesq="sla4"
+texto Pdir="sla5"
+#--------------------#
+tarefa CurvaNoventaEsq 
+{
+  frente(100)
+  esperar(700)
+  farei {cen=cor(3) esquerda(300)} enquanto(cen=="BRANCO")
+}
+
+tarefa CurvaNoventadir 
+{
+  #frente(100)
+  #esperar(700)
+  #farei {cen=cor(3) direita(300)} enquanto(cen=="BRANCO")
+  motoresquerda(negativo(300)) motordireita(200) 
+}
+#--------------------#
+inicio
+  enquanto(1==1) farei
+  {
+    Pesq=cor(5)
+     esq=cor(4)
+     cen=cor(3)
+     dir=cor(2)
+    Pdir=cor(1)
+    
+    se(dir=="BRANCO" e esq=="BRANCO") entao
+    {frente (25)}
+    
+    se(dir=="BRANCO" e esq!="BRANCO") entao
+    {se(Pesq=="PRETO") entao {CurvaNoventaEsq()} senao {esquerda(200)}}
+      
+    se(dir!="BRANCO" e esq=="BRANCO") entao
+    {se(Pdir!="BRANCO") entao{CurvaNoventadir()} senao{direita(200)}}
+      
+  }
+
+
+fim

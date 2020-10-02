@@ -1,0 +1,103 @@
+#==================================== variaveis fixas - iva
+numero A=0
+#==================================== variaveis alteraveis - iva
+numero veloRetaJump = 75
+numero esperarFrente = 110
+numero esperarFrenteVerde = 450
+numero esperarTras = 0
+numero distanciaDoDesvio = 50
+#==================================== inicio
+inicio
+corpincel("VERMELHO")
+pintar()
+enquanto(1==1)farei{
+#==================================== laço principal - iva
+	enquanto(A==0)farei{
+		se(ultra(1)==distanciaDoDesvio)entao{A=8}
+		se(ultra(3)<50 e ultra(4)<50)entao{A=9}
+		senao{
+			parar() 
+				   A=1 escrever(1,"linha simples") 
+		}
+	}
+	enquanto(A==1)farei{
+		enquanto((ultra(1)>distanciaDoDesvio) e (ultra(2)>50))farei{
+			escrever(2,cor(2))
+			escrever(3,cor(3))
+			se((cor(2)!="PRETO") e (cor(3)!="PRETO") ou
+			(cor(1)!="PRETO") e (cor(4)!="PRETO"))entao{		#frente
+				frente(veloRetaJump)
+			} 		
+			se((cor(2)=="BRANCO") e (cor(3)!="BRANCO"))entao{	#esquerda90			#esquerda90
+				se(cor(4)!="BRANCO" e cor(4)!="VERDE")entao{
+					escrever(1,"curva 90 graus para a esquerda")
+					frente(200) esperar(esperarFrente) 
+					enquanto(cor(2)!="PRETO")farei{
+						rotacionar(300,negativo(0.5)) 
+					}
+					tras(200) esperar(esperarTras)
+				}
+				se(cor(3)=="VERDE" ou cor(4)=="VERDE" ou
+				(cor(3)=="VERDE" e cor(4)=="VERDE"))entao{	#esquerdaVerde
+					escrever(1,"curva 90 graus para a esquerda")
+					frente(200) esperar(esperarFrenteVerde) 
+					rotacionar(300,negativo(20))
+					enquanto(cor(2)!="PRETO")farei{
+						rotacionar(300,negativo(0.5)) 
+					}
+					tras(200) esperar(esperarTras)
+				}
+				senao{							#esquerda
+				rotacionar(300,negativo(0.5))
+				}
+			} 		
+			se((cor(2)!="BRANCO") e (cor(3)=="BRANCO"))entao{	#direita90
+				se(cor(1)!="BRANCO" e cor(1)!="VERDE")entao{
+					escrever(1,"curva 90 graus para a direita")
+					frente(200) esperar(esperarFrente) 
+					enquanto(cor(3)!="PRETO")farei{
+						rotacionar(300,0.5) #direita90graus
+					}
+					tras(200) esperar(esperarTras)
+				}
+				se(cor(2)=="VERDE" ou cor(1)=="VERDE" ou
+				(cor(2)=="VERDE" e cor(1)=="VERDE"))entao{	#direitaVerde	
+					escrever(1,"curva 90 graus para a direita")
+					frente(200) esperar(esperarFrenteVerde) 
+					rotacionar(300,20)
+					enquanto(cor(3)!="PRETO")farei{
+						rotacionar(300,0.5) #direita90graus
+					}
+					tras(200) esperar(esperarTras)
+				}
+				senao{							#direita
+					rotacionar(300,0.5) 
+				}
+			}
+		}
+		A=0
+	}
+	enquanto(A==8)farei{
+            escrever(1,"Obstáculo indetificado")
+			direita(300)
+			esperar(5000) 
+            frente(300)
+			esperar(900)
+			esquerda(300)
+			esperar(5000)
+			frente(300)
+			esperar(500)
+			esquerda(300)
+			esperar(5000)
+            A=0
+            interromper()
+	}
+	enquanto(A==9)farei{
+            #rampa
+            frente(300)
+	}
+	enquanto(A==10)farei{
+
+	}
+}
+fim
